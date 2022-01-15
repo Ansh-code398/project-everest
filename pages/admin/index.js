@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react"
 import CreatePost from "../../components/CreatePost";
-const adminPage = (props) => {
+const AdminPage = (props) => {
     const router = useRouter();
     useEffect(() => {
         if (!props.user) {
@@ -15,4 +15,4 @@ const adminPage = (props) => {
     )
 }
 
-export default adminPage
+export default AdminPage
