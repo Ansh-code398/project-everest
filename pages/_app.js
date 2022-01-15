@@ -1,7 +1,13 @@
+import Layout from '../components/Layout'
 import '../styles/globals.css'
+import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const [user, setUser] = useState(null);
+
+  return <Layout user={user} setUser={setUser}>
+    <Component {...pageProps} user={user} setUser={setUser} />
+  </Layout>
 }
 
 export default MyApp
