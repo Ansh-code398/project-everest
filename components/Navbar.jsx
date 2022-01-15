@@ -167,6 +167,9 @@ export default function Navbar({user, setUser}) {
         }}
         placeholder='Search...'
         className="bg-white"
+        style={{
+          backgroundColor: '#fff'
+        }}
         renderInput={(params) => (
           <StyledInputBase
             {...params}
