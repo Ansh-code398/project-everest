@@ -50,7 +50,7 @@ const softwareDetail = ({ software }) => {
           </div>
           <div className="flex justify-center mt-10">
 
-          {software.software_website && <a href={software.software_website} target="_blank">
+          {software.software_website && <a href={software.software_website} target="_blank" rel="noreferrer">
             <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block hover:bg-teal-900 bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer mx-auto">Website of the Software</span>
           </a>}
           </div>
