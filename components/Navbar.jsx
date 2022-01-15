@@ -166,7 +166,6 @@ export default function Navbar({user, setUser}) {
           }
         }}
         placeholder='Search...'
-        className="search"
         className="bg-white"
         renderInput={(params) => (
           <StyledInputBase

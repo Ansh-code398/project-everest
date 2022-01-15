@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react"
+import React, { useEffect } from "react"
 import CreatePost from "../../components/CreatePost";
-const index = (props) => {
+const adminPage = (props) => {
     const router = useRouter();
     useEffect(() => {
         if (!props.user) {
@@ -15,4 +15,4 @@ const index = (props) => {
     )
 }
 
-export default index
+export default adminPage
