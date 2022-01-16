@@ -212,7 +212,7 @@ export default function Navbar({user, setUser}) {
           </Box>}
         </Toolbar>
       </AppBar>
-      {router.asPath.includes("/admin") && renderMobileMenu}
+      {router.isReady && router.asPath.includes("/admin") && renderMobileMenu}
       
     </Box>
   );
