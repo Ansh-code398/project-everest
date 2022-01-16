@@ -16,19 +16,25 @@ const Softwares = ({ software }) => {
     }, [])
     return (
 
-        <div className="container mx-auto px-10 mb-8">
+        <>
             <Head>
-                <meta property="og:title" content={software.name} />
+                <title>{software.title}</title>
+                <meta name="description" content={software.description} />
+
+                <meta property="og:title" content={software.title} />
                 <meta property="og:description" content={`${software.desc} \n Author - ${software.author.name}`} />
                 <meta property="og:image" content={software.featuredImage.url} />
+                <link rel="icon" href={software.featuredImage.url} type="image" />
                 <meta property="og:url" content={`https://project-everest.vercel.app/applications/${software.slug}`} />
             </Head>
+            <div className="container mx-auto px-10 mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-12">
                     <SoftwareDetail software={softwares ? softwares : software} />
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
