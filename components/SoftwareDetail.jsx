@@ -1,14 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import Prism from 'prismjs';
+import EditIcon from '@mui/icons-material/Edit';
 import { Tooltip } from '@mui/material';
+import EditPost from './EditPost';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Modal from './Modal';
+import axios from 'axios';
 
 const softwareDetail = ({ software }) => {
+  const [user, setUser] = useState(null);
+  const [openModal, setOpenModal] = useState(false)
+  useEffect(() => {
+    localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
+  }, [])
+  const [edit, setEdit] = useState(false);
   return (
     <>
       {software && <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-        <div className="relative overflow-hidden shadow-md mb-6">
-          {software.featuredImage.url && <img src={software.featuredImage.url} alt="" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />}
+        <div className="relative overflow-hidden shadow-md mb-6 flex justify-center">
+          {software.featuredImage.url && <img src={software.featuredImage.url} alt="" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg max-w-md mx-auto" />}
         </div>
 
         <div className="px-4 lg:px-0">
@@ -22,7 +32,7 @@ const softwareDetail = ({ software }) => {
                 src={software.author.photo.url}
               />
               <Tooltip title={`Bio- ${software.author.bio}`}>
-                <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{software.author.name}</p>
+                <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg cursor-pointer">{software.author.name}</p>
               </Tooltip>
             </div>}
             <div className='flex-1' />
@@ -34,7 +44,13 @@ const softwareDetail = ({ software }) => {
                 <span className="align-middle">Published On - {moment(software.createdAt).format('MMM DD, YYYY')}</span>
               </div>
             </Tooltip>}
+            {user && software.author.email === user.email && <EditIcon
+              className="cursor-pointer text-gray-600 hover:text-teal-600 transition-all mx-5 duration-500" onClick={() => setEdit(!edit)} />}
+            {user && software.author.email === user.email && <DeleteIcon
+              className="cursor-pointer text-gray-600 hover:text-teal-600 transition-all mx-5 duration-500" onClick={()=>setOpenModal(true)} />}
           </div>
+          {openModal && <Modal title='Are you sure that you want to delete this application? ' open={openModal} setOpen={setOpenModal} software_id={software._id} email={user.email}/>}
+          {edit && <EditPost software={software} user={user} setEdit={setEdit} />}
           {software.title && <h1 className="mb-8 text-3xl font-semibold text-center">Title - {software.title}</h1>}
           {software.exerpt && <p className="text-gray-500 text-center my-4">Small Description - {software.exerpt}</p>}
           {software.slug && <h1 className="text-2xl text-center my-16 break-all">Description - {software.desc}</h1>}
@@ -50,9 +66,9 @@ const softwareDetail = ({ software }) => {
           </div>}
           <div className="flex justify-center mt-10">
 
-          {software.software_website && <a href={software.software_website} target="_blank" rel="noreferrer">
-            <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block hover:bg-teal-900 bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer mx-auto">Website of the Software</span>
-          </a>}
+            {software.software_website && <a href={software.software_website} target="_blank" rel="noreferrer">
+              <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block hover:bg-teal-900 bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer mx-auto">Website of the Software</span>
+            </a>}
           </div>
         </div>
       </div>}
