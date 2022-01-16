@@ -1,12 +1,24 @@
 import axios from "axios";
-import SoftwareDetail from "../../components/SoftwareDetail.jsx";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import SoftwareDetail from "../../components/SoftwareDetail";
 const Softwares = ({ software }) => {
+    const [softwares, setSoftwares] = useState(null);
+    const router = useRouter();
+    useEffect(() => {
+        const fd = () => {
+            axios.get(`https://linuix-app-api.vercel.app/api/softwares/${router.query.slug}`).then(res => {
+                setSoftwares(res.data);
+            });
+        }
+        fd();
+    }, [])
     return (
 
         <div className="container mx-auto px-10 mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-12">
-                    <SoftwareDetail software={software} />
+                    <SoftwareDetail software={softwares ? softwares : software} />
                 </div>
             </div>
         </div>
