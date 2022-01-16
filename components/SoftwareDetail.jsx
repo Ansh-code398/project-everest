@@ -76,4 +76,4 @@ const SoftwareDetail = ({ software }) => {
   );
 };
 
-export default softwareDetail;
+export default SoftwareDetail;

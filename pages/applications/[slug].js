@@ -1,6 +1,6 @@
 import axios from "axios";
-import SoftwareDetail from "../../components/SoftwareDetail";
-const softwares = ({ software }) => {
+import SoftwareDetail from "../../components/SoftwareDetail.jsx";
+const Softwares = ({ software }) => {
     return (
 
         <div className="container mx-auto px-10 mb-8">
@@ -13,7 +13,7 @@ const softwares = ({ software }) => {
     )
 }
 
-export default softwares
+export default Softwares
 
 export async function getStaticProps({ params }) {
     const data = await (await axios.get(`https://linuix-app-api.vercel.app/api/softwares/${params.slug}`)).data;
