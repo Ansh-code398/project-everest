@@ -128,35 +128,6 @@ export default function EditUser(props) {
                         >
                             Edit user
                         </Button>
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            sx={{ mb: 2 }}
-                            className='bg-red-500 hover:bg-red-900'
-                            onClick={async () => {
-                                try {
-                                    const confirm = window.confirm('Are you sure you want to delete this user?');
-                                    if (confirm) {
-                                        await axios.delete(`https://linuix-app-api.vercel.app/api/users/${JSON.parse(localStorage.getItem('user'))._id}`, {
-                                            data: {
-                                                userId: JSON.parse(localStorage.getItem('user'))._id
-                                            }
-                                        });
-                                        localStorage.removeItem('user');
-                                        props.setUser(null);
-                                        router.push('/');
-
-                                    } else {
-                                        return
-                                    }
-                                }
-                                catch (err) {
-                                    console.log(err);
-                                }
-                            }}
-                        >
-                            Delete user
-                        </Button>
                     </Box>
                 </Box>
             </Container>
