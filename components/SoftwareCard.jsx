@@ -45,8 +45,8 @@ const SoftwareCard = ({ software }) => (
         </div>}
 
         <div className="text-center">
-            <Link href={`/software/${software.slug}`}>
-                <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Continue Reading</span>
+            <Link href={`/applications/${software.slug}`}>
+                <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Show Instructions To Install</span>
             </Link>
         </div>
     </div>
