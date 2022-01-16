@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from './Modal';
 import axios from 'axios';
 
-const softwareDetail = ({ software }) => {
+const SoftwareDetail = ({ software }) => {
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(false)
   useEffect(() => {
