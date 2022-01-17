@@ -174,7 +174,7 @@ export default function SignUp(props) {
 
               <Grid item>
                 <Typography variant="h4" textAlign="center">
-                  You Cheater! You're not a staff member! <SentimentVeryDissatisfiedIcon/> <br/>
+                  You Cheater! You are not a staff member! <SentimentVeryDissatisfiedIcon/> <br/>
                   Take This
                 </Typography>
                 </Grid>
