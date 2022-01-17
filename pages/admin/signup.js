@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { VideoCard } from 'material-ui-player';
-
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 export default function SignUp(props) {
   const theme = createTheme();
@@ -174,7 +174,7 @@ export default function SignUp(props) {
 
               <Grid item>
                 <Typography variant="h4" textAlign="center">
-                  You Cheater! You're not a staff member! :( <br/>
+                  You Cheater! You're not a staff member! <SentimentVeryDissatisfiedIcon/> <br/>
                   Take This
                 </Typography>
                 </Grid>
