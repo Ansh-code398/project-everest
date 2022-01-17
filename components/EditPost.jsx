@@ -11,7 +11,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function EditPost(props) {
@@ -23,12 +22,23 @@ export default function EditPost(props) {
     const categories = useRef();
     const code = useRef();
     const software_website = useRef();
-
+    const [cat, setCat] = useState()
     const router = useRouter();
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const cats = categories.current.value.split(',');
+            try {
+                const cats = categories.current.value.split(',');
+                const cat = cats.forEach(async (cat) => {
+                    await axios.post('https://linuix-app-api.vercel.app/api/categories/', {
+                        name: cat,
+                        slug: cat.replace(/\s+/g, '')
+                    });
+                });
+            }
+            catch (e) {
+
+            }
             const data = await axios.put(`https://linuix-app-api.vercel.app/api/softwares/${props.software._id}`, {
                 title: title.current.value,
                 exerpt: exerpt.current.value,
@@ -37,7 +47,7 @@ export default function EditPost(props) {
                     url: featuredImage.current.value
                 },
                 email: props.user.email,
-                categories: cats,
+                categories: cat,
                 code: code.current.value,
                 software_website: software_website.current.value
             });

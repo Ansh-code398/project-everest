@@ -1,4 +1,4 @@
-import React, { useRef,useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-
+import { VideoCard } from 'material-ui-player';
 
 
 export default function SignUp(props) {
@@ -23,23 +23,32 @@ export default function SignUp(props) {
   const profilePic = useRef();
   const bio = useRef();
   const name = useRef();
+  const pin = useRef();
   const router = useRouter();
+  const [wrongPin, setWrongPin] = React.useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const data = await axios.post('https://linuix-app-api.vercel.app/api/auth/register', {
-        email: email.current.value,
-        password: password.current.value,
-        photo_url: profilePic.current.value,
-        bio: bio.current.value,
-        username: name.current.value,
-      });
-      localStorage.setItem('user', JSON.stringify(data.data));
-      props.setUser(data.data);
-      router.push('/admin');
+    if (pin.current.value === process.env.NEXT_PUBLIC_PIN) {
+      try {
+        const data = await axios.post('https://linuix-app-api.vercel.app/api/auth/register', {
+          email: email.current.value,
+          password: password.current.value,
+          photo_url: profilePic.current.value,
+          bio: bio.current.value,
+          username: name.current.value,
+        });
+        localStorage.setItem('user', JSON.stringify(data.data));
+        props.setUser(data.data);
+        router.push('/admin');
+      }
+      catch (err) {
+        console.log(err);
+      }
     }
-    catch (err) {
-      console.log(err);
+    else {
+      setWrongPin(
+        true
+      )
     }
   };
   useEffect(() => {
@@ -65,8 +74,8 @@ export default function SignUp(props) {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+          {!wrongPin ? <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
@@ -129,6 +138,17 @@ export default function SignUp(props) {
                   inputRef={bio}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="pin"
+                  label="Enter Staff Pin"
+                  type="password"
+                  id="pin"
+                  inputRef={pin}
+                />
+              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -148,7 +168,23 @@ export default function SignUp(props) {
                 </Link>
               </Grid>
             </Grid>
+            
           </Box>
+          : <Grid container justifyContent="flex-center">
+
+              <Grid item>
+                <Typography variant="h4" textAlign="center">
+                  You Cheater! You're not a staff member! ╰（‵□′）╯ <br/>
+                  Take This
+                </Typography>
+                </Grid>
+              <Grid item>
+                <VideoCard 
+                src="/Rickroll.mp4"
+                autoplay={true}
+                />
+              </Grid>
+            </Grid>}
         </Box>
       </Container>
     </ThemeProvider>

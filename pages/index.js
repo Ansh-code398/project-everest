@@ -1,5 +1,6 @@
 import axios from 'axios';
 import SoftwareCard from '../components/SoftwareCard';
+
 export default function Home({ softwares }) {
   console.log(softwares);
   return (

@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 
 const SoftwareCard = ({ software }) => (
-    <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8 lg:w-1/3 md:w-1/2 sm:w-full">
+    <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8 w-full">
         <div className="relative overflow-hidden shadow-md pb-80 mb-6 flex justify-center">
             <img src={software.featuredImage.url} alt="" className="object-center absolute h-full w-full max-w-xs object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
         </div>

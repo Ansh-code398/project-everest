@@ -5,6 +5,7 @@ import { Tooltip } from '@mui/material';
 import EditPost from './EditPost';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from './Modal';
+import Link from 'next/link';
 import axios from 'axios';
 
 const SoftwareDetail = ({ software }) => {
@@ -16,7 +17,7 @@ const SoftwareDetail = ({ software }) => {
   const [edit, setEdit] = useState(false);
   return (
     <>
-      {software && <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+      {software && <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 mx-2">
         <div className="relative overflow-hidden shadow-md mb-6 flex justify-center">
           {software.featuredImage.url && <img src={software.featuredImage.url} alt="" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg max-w-md mx-auto" />}
         </div>
@@ -47,20 +48,20 @@ const SoftwareDetail = ({ software }) => {
             {user && software.author.email === user.email && <EditIcon
               className="cursor-pointer text-gray-600 hover:text-teal-600 transition-all mx-5 duration-500" onClick={() => setEdit(!edit)} />}
             {user && software.author.email === user.email && <DeleteIcon
-              className="cursor-pointer text-gray-600 hover:text-teal-600 transition-all mx-5 duration-500" onClick={()=>setOpenModal(true)} />}
+              className="cursor-pointer text-gray-600 hover:text-teal-600 transition-all mx-5 duration-500" onClick={() => setOpenModal(true)} />}
           </div>
-          {openModal && <Modal title='Are you sure that you want to delete this application? ' open={openModal} setOpen={setOpenModal} software_id={software._id} email={user.email}/>}
+          {openModal && <Modal title='Are you sure that you want to delete this application? ' open={openModal} setOpen={setOpenModal} software_id={software._id} email={user.email} />}
           {edit && <EditPost software={software} user={user} setEdit={setEdit} />}
           {software.title && <h1 className="mb-8 text-3xl font-semibold text-center">Title - {software.title}</h1>}
           {software.exerpt && <p className="text-gray-500 text-center my-4">Small Description - {software.exerpt}</p>}
           {software.slug && <h1 className="text-2xl text-center my-16 break-all">Description - {software.desc}</h1>}
           {software.code && <h1 className="text-xl font-semibold mb-4 mx-auto  max-w-xs text-center">Code to install</h1>}
           {software.code && <p style={{ background: '#333', borderRadius: '50px', textAlign: 'center' }} className='text-red-300  max-w-xs mx-auto'>{software.code}</p>}
-          {software.category && <h1 className='text-center'>Categories</h1>}
+          {software.categories && <h1 className='text-center'>Categories</h1>}
           {software.categories && <div className="flex flex-wrap justify-center">
             {software.categories.map((category, index) => (
               <div className="bg-gray-200 text-gray-700 p-2 m-2 rounded-full" key={index}>
-                #{category}
+                  #{category}
               </div>
             ))}
           </div>}

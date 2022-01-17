@@ -48,6 +48,12 @@ export default function CreatePost(props) {
                 },
                 software_website: software_website.current.value
             });
+            cats.forEach(async (cat) => {
+                await axios.post('https://linuix-app-api.vercel.app/api/categories/', {
+                    name: cat,
+                    slug: cat.replace(/\s+/g, '')
+                });
+            });
             router.push(`/applications/${data.data.slug}`);
         }
         catch (err) {
