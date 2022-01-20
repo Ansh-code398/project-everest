@@ -24,6 +24,7 @@ export default function CreatePost(props) {
     const categories = useRef();
     const code = useRef();
     const software_website = useRef();
+    const downloadLink = useRef();
 
     const router = useRouter();
     const handleSubmit = async (event) => {
@@ -46,7 +47,8 @@ export default function CreatePost(props) {
                     bio: props.user.bio,
                     email: props.user.email
                 },
-                software_website: software_website.current.value
+                software_website: software_website.current.value,
+                downloadLink: downloadLink.current.value
             });
             cats.forEach(async (cat) => {
                 await axios.post('https://linuix-app-api.vercel.app/api/categories/', {
@@ -170,6 +172,19 @@ export default function CreatePost(props) {
                                     id="category"
                                     autoComplete="slug"
                                     inputRef={categories}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="downloadLink"
+                                    label="Download Link"
+                                    placeholder='https://asia.mirror.pkgbuild.com/community/os/x86_64/obs-studio-27.1.3-3-x86_64.pkg.tar.zst'
+                                    type="text"
+                                    id="downloadLink"
+                                    autoComplete="downloadLink"
+                                    inputRef={downloadLink}
                                 />
                             </Grid>
                             <Grid item xs={12}>

@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from './Modal';
 import Link from 'next/link';
 import axios from 'axios';
+import DownloadIcon from '@mui/icons-material/Download';
 
 const SoftwareDetail = ({ software }) => {
   const [user, setUser] = useState(null);
@@ -69,6 +70,9 @@ const SoftwareDetail = ({ software }) => {
 
             {software.software_website && <a href={software.software_website} target="_blank" rel="noreferrer">
               <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block hover:bg-teal-900 bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer mx-auto">Website of the Software</span>
+            </a>}
+            {software.downloadLink && <a href={software.downloadLink} target="_blank" rel="noreferrer">
+              <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block hover:bg-teal-900 bg-teal-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer mx-auto">Software Direct Download <DownloadIcon/></span>
             </a>}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -24,21 +24,10 @@ export default function EditPost(props) {
     const software_website = useRef();
     const [cat, setCat] = useState()
     const router = useRouter();
+    const downloadLink = useRef();
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            try {
-                const cats = categories.current.value.split(',');
-                const cat = cats.forEach(async (cat) => {
-                    await axios.post('https://linuix-app-api.vercel.app/api/categories/', {
-                        name: cat,
-                        slug: cat.replace(/\s+/g, '')
-                    });
-                });
-            }
-            catch (e) {
-
-            }
             const data = await axios.put(`https://linuix-app-api.vercel.app/api/softwares/${props.software._id}`, {
                 title: title.current.value,
                 exerpt: exerpt.current.value,
@@ -49,10 +38,11 @@ export default function EditPost(props) {
                 email: props.user.email,
                 categories: cat,
                 code: code.current.value,
-                software_website: software_website.current.value
+                software_website: software_website.current.value,
+                downloadLink: downloadLink.current.value
             });
             props.setEdit(false);
-            router.push(`/applications/${data.data.slug}`);
+                router.push(`/applications/${data.data.slug}`);
         }
         catch (err) {
             console.log(err);
@@ -68,6 +58,7 @@ export default function EditPost(props) {
             categories.current.value = props.software.categories.join(',');
             code.current.value = props.software.code;
             software_website.current.value = props.software.software_website;
+            downloadLink.current.value = props.software.downloadLink;
         }
     }, [props.software]);
     return (
@@ -162,6 +153,19 @@ export default function EditPost(props) {
                                     id="category"
                                     autoComplete="slug"
                                     inputRef={categories}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="downloadLink"
+                                    label="Download Link"
+                                    placeholder='https://asia.mirror.pkgbuild.com/community/os/x86_64/obs-studio-27.1.3-3-x86_64.pkg.tar.zst'
+                                    type="text"
+                                    id="downloadLink"
+                                    autoComplete="downloadLink"
+                                    inputRef={downloadLink}
                                 />
                             </Grid>
                             <Grid item xs={12}>
