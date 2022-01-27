@@ -26,14 +26,15 @@ export default function EditUser(props) {
         event.preventDefault();
         try {
             const user = localStorage.getItem('user');
-            const data = await axios.put(`https://linuix-app-api.vercel.app/api/users/${user._id}`, {
-                userId: user._id,
+            const data = await axios.put(`https://linuix-app-api.vercel.app/api/users/${props.id}`, {
+                userId: props.id,
                 username: username.current.value,
                 bio: bio.current.value,
                 password: password.current.value,
                 photo_url: photo_url.current.value
             });
             localStorage.setItem('user', data.data);
+            props.setUser(data.data);
             router.push('/admin');
         }
         catch (err) {

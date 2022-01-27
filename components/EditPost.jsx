@@ -36,6 +36,13 @@ export default function EditPost(props) {
                     url: featuredImage.current.value
                 },
                 email: props.user.email,
+                author: {
+                    name: props.user.username,
+                    bio: props.user.bio,
+                    photo:{
+                        url: props.user.photo_url
+                    }
+                },
                 categories: cat,
                 code: code.current.value,
                 software_website: software_website.current.value,

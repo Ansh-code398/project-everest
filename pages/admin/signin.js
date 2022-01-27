@@ -1,10 +1,8 @@
-import React, {useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,32 +12,39 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LinkBody from 'next/link'
 import axios from 'axios';
-import { useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 const theme = createTheme();
 
 export default function SignIn(props) {
-    const email = useRef();
-    const password = useRef();
-    const router = useRouter();
-  const handleSubmit = async(event) => {
+  const email = useRef();
+  const password = useRef();
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        const data = await axios.post('https://linuix-app-api.vercel.app/api/auth/login', {
-          email: email.current.value,
-          password: password.current.value
-        });
-        localStorage.setItem('user', JSON.stringify(data.data));
-        props.setUser(data.data);
+      const data = await axios.post('https://linuix-app-api.vercel.app/api/auth/login', {
+        email: email.current.value,
+        password: password.current.value
+      });
+      localStorage.setItem('user', JSON.stringify(data.data));
+      props.setUser(data.data);
+      router.push('/admin');
+    }
+    catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('user') !== null) {
         router.push('/admin');
       }
-      catch (err) {
-        console.log(err);
-      }
-  };
-  useEffect(() => {
-    if (localStorage.getItem('user') !== null) {
-      router.push('/admin');
+    }
+    catch (err) {
+      console.log(err);
     }
   }, []);
   return (
@@ -95,9 +100,9 @@ export default function SignIn(props) {
             <Grid container>
               <Grid item>
                 <Link variant="body2">
-                    <LinkBody href="/admin/signup">
-                        {"Don't have an account? Sign Up"}
-                    </LinkBody>
+                  <LinkBody href="/admin/signup">
+                    {"Don't have an account? Sign Up"}
+                  </LinkBody>
                 </Link>
               </Grid>
             </Grid>

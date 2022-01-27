@@ -11,7 +11,6 @@ const Layout = (props) => {
                 <meta name="author" content="Project Everest" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" type='image/png' href="https://media.discordapp.net/attachments/890475885470285864/920662213293924412/calinix.jpg" />
-                <meta property='og:image' content='https://media.discordapp.net/attachments/890475885470285864/920662213293924412/calinix.jpg'/>
             </Head>
             <Navbar user={props.user} setUser={props.setUser} />
             {props.children}

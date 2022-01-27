@@ -6,14 +6,19 @@ import EditUser from "../../components/EditUser";
 const AdminPage = (props) => {
     const router = useRouter();
     useEffect(() => {
-        if (!props.user) {
-            router.push("/admin/signin");
+        try {
+            if (!props.user) {
+                router.push("/admin/signin");
+            }
+        }
+        catch (err) {
+            console.log(err);
         }
     }, []);
     return (
         <div>
-           <CreatePost user={props.user}/> 
-           <EditUser setUser={props.setUser}/>
+            <CreatePost user={props.user} />
+            {props.user && <EditUser setUser={props.setUser} id={props.user._id} />}
         </div>
     )
 }

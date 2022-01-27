@@ -20,7 +20,6 @@ const Softwares = ({ software }) => {
             {software && <Head>
                 <title>{software.title}</title>
                 <meta name="description" content={`${software.desc} \n Author - ${software.author.name}`} />
-
                 <meta property="og:title" content={software.title} />
                 <meta property="og:description" content={`${software.desc} \n Author - ${software.author.name}`} />
                 <meta property="og:image" content={software.featuredImage.url} />
