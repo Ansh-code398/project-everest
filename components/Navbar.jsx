@@ -30,7 +30,7 @@ const Search = styled(Autocomplete)(({ theme }) => ({
     marginLeft: theme.spacing(3),
     width: 'auto',
   },
- 
+
   minWidth: "30%"
 }));
 
@@ -58,7 +58,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
   },
 }));
 
-export default function Navbar({user, setUser}) {
+export default function Navbar({ user, setUser }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchData, setSearchData] = React.useState([]);
@@ -87,10 +87,10 @@ export default function Navbar({user, setUser}) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  function signOut(){
+  function signOut() {
     localStorage.removeItem('user');
     setUser(null);
-    if(router.asPath === '/admin'){
+    if (router.asPath === '/admin') {
       router.push('/admin/signin');
     }
   }
@@ -121,11 +121,11 @@ export default function Navbar({user, setUser}) {
           aria-haspopup="true"
           color="inherit"
         >
-          <Avatar src={user.photo_url} onClick={signOut}/>
+          <Avatar src={user.photo_url} onClick={signOut} />
         </IconButton>
         <p>Sign Out</p>
       </MenuItem> :
-      <Link href='/admin/signin'><Button variant="primary"> Sign In </Button></Link>}
+        <Link href='/admin/signin'><Button variant="primary"> Sign In </Button></Link>}
     </Menu>
   );
 
@@ -140,51 +140,60 @@ export default function Navbar({user, setUser}) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{background: '#0a1946'}}>
+      <AppBar position="static" style={{ background: '#0a1946' }}>
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            Everest
-          </Typography>
+          <Link href='/'>
+            <Button
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <Avatar src="https://media.discordapp.net/attachments/890475885470285864/920662213293924412/calinix.jpg" />
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'block' }, marginLeft: '0.5rem' }}
+              >
+                Everest
+              </Typography>
+            </Button>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
           {searchData && <Search
-        freeSolo
-        id="free-solo-2-demo"
-        disableClearable
-        options={searchData.map((item) => item.title)}
-        onChange={async(event, value) => {
-          try{
-            const url =  await searchData.filter(item => item.title === value)[0].slug;
-            router.push(`/applications/${url}`);
-          }
-          catch(err){
-            return;
-          }
-        }}
-        placeholder='Search...'
-        className="bg-white"
-        style={{
-          backgroundColor: '#fff'
-        }}
-        renderInput={(params) => (
-          <StyledInputBase
-            {...params}
-            label="Search"
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
+            freeSolo
+            id="free-solo-2-demo"
+            disableClearable
+            options={searchData.map((item) => item.title)}
+            onChange={async (event, value) => {
+              try {
+                const url = await searchData.filter(item => item.title === value)[0].slug;
+                router.push(`/applications/${url}`);
+              }
+              catch (err) {
+                return;
+              }
             }}
-          />
-        )}
-      >   <SearchIconWrapper>
-      <SearchIcon />
-    </SearchIconWrapper>
-    </Search>}
-          
+            placeholder='Search...'
+            className="bg-white"
+            style={{
+              backgroundColor: '#fff'
+            }}
+            renderInput={(params) => (
+              <StyledInputBase
+                {...params}
+                label="Search"
+                InputProps={{
+                  ...params.InputProps,
+                  type: 'search',
+                }}
+              />
+            )}
+          >   <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+          </Search>}
+
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {user ? <IconButton
               size="large"
@@ -195,7 +204,7 @@ export default function Navbar({user, setUser}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              {router.asPath.includes("/admin") && <Avatar onClick={signOut} src={user.photo_url}/>}
+              {router.asPath.includes("/admin") && <Avatar onClick={signOut} src={user.photo_url} />}
             </IconButton> : <Link href='/admin/signin'><Button variant="primary"> Sign In </Button></Link>}
           </Box>
           {router.asPath.includes("/admin") && <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -213,7 +222,7 @@ export default function Navbar({user, setUser}) {
         </Toolbar>
       </AppBar>
       {router.isReady && router.asPath.includes("/admin") && renderMobileMenu}
-      
+
     </Box>
   );
 }

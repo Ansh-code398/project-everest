@@ -9,12 +9,8 @@ import Link from 'next/link';
 import axios from 'axios';
 import DownloadIcon from '@mui/icons-material/Download';
 
-const SoftwareDetail = ({ software }) => {
-  const [user, setUser] = useState(null);
+const SoftwareDetail = ({ software, user }) => {
   const [openModal, setOpenModal] = useState(false)
-  useEffect(() => {
-    localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
-  }, [])
   const [edit, setEdit] = useState(false);
   return (
     <>

@@ -3,9 +3,11 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import SoftwareDetail from "../../components/SoftwareDetail";
-const Softwares = ({ software }) => {
+const Softwares = (props) => {
+    const {software, user} = props;
     const [softwares, setSoftwares] = useState(null);
     const router = useRouter();
+    const [usr, setUsr] = useState(null);
     useEffect(() => {
         const fd = () => {
             axios.get(`https://linuix-app-api.vercel.app/api/softwares/${router.query.slug}`).then(res => {
@@ -13,15 +15,16 @@ const Softwares = ({ software }) => {
             });
         }
         fd();
-    }, [router.query.slug])
+        if(!usr && user) setUsr(user);
+    }, [router.query.slug, user]);
     return (
 
         <>
             {software && <Head>
                 <title>{software.title}</title>
-                <meta name="description" content={`${software.desc} \n Author - ${software.author.name}`} />
+                <meta name="description" content={`${software.exerpt} \n Author - ${software.author.name}`} />
                 <meta property="og:title" content={software.title} />
-                <meta property="og:description" content={`${software.desc} \n Author - ${software.author.name}`} />
+                <meta property="og:description" content={`${software.exerpt} \n Author - ${software.author.name}`} />
                 <meta property="og:image" content={software.featuredImage.url} />
                 <link rel="icon" href={software.featuredImage.url} type="image" />
                 <meta property="og:url" content={`https://project-everest.vercel.app/applications/${software.slug}`} />
@@ -29,7 +32,7 @@ const Softwares = ({ software }) => {
             <div className="container mx-auto px-10 mb-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div className="col-span-1 lg:col-span-12">
-                        <SoftwareDetail software={softwares ? softwares : software}/>
+                        <SoftwareDetail software={softwares ? softwares : software} user={usr} />
                     </div>
                 </div>
             </div>

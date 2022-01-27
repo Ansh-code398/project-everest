@@ -41,7 +41,8 @@ export default function EditPost(props) {
                     bio: props.user.bio,
                     photo:{
                         url: props.user.photo_url
-                    }
+                    },
+                    email: props.user.email
                 },
                 categories: cat,
                 code: code.current.value,
