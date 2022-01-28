@@ -8,6 +8,7 @@ import Modal from './Modal';
 import Link from 'next/link';
 import axios from 'axios';
 import DownloadIcon from '@mui/icons-material/Download';
+import Ratings from './Rating';
 
 const SoftwareDetail = ({ software, user }) => {
   const [openModal, setOpenModal] = useState(false)
@@ -62,6 +63,7 @@ const SoftwareDetail = ({ software, user }) => {
               </div>
             ))}
           </div>}
+          <Ratings id={software._id} />
           <div className="flex justify-center mt-10">
 
             {software.software_website && <a href={software.software_website} target="_blank" rel="noreferrer">
