@@ -29,7 +29,7 @@ const Softwares = (props) => {
                 <link rel="icon" href={software.featuredImage.url} type="image" />
                 <meta property="og:url" content={`https://project-everest.vercel.app/applications/${software.slug}`} />
             </Head>}
-            <div className="container mx-auto px-10 mb-8">
+            <div className="w-screen overflow-hidden bg-[#131313] px-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div className="col-span-1 lg:col-span-12">
                         <SoftwareDetail software={softwares ? softwares : software} user={usr} />

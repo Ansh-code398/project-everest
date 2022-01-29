@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { TextField } from '@mui/material';
 import Link from 'next/link';
+import { Progress } from './Bar';
 
 const Search = styled(Autocomplete)(({ theme }) => ({
   position: 'relative',
@@ -58,7 +59,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
   },
 }));
 
-export default function Navbar({ user, setUser }) {
+export default function Navbar({ user, setUser, isAnimating }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchData, setSearchData] = React.useState([]);
@@ -140,7 +141,8 @@ export default function Navbar({ user, setUser }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: '#0a1946' }}>
+      <AppBar position="fixed" style={{ background: '#0a1946' }}>
+      <Progress isAnimating={isAnimating} />
         <Toolbar>
           <Link href='/'>
             <Button

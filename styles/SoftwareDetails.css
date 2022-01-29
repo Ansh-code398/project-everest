@@ -9,7 +9,7 @@
   border: none;
   background-size: 300% 100%;
   border-radius: 50px;
-  moz-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
   -o-transition: all .4s ease-in-out;
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
@@ -17,7 +17,7 @@
 
 .bn632-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
   -o-transition: all .4s ease-in-out;
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
@@ -36,4 +36,30 @@
     #fbb03b
   );
   box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+
+.copy-btn{
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 20px;
+  transform: translateY(-20px);
+  padding: 2px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 5px;
+  position: absolute;
+  transition: all .4s ease-in-out;
+}
+.copy-btn:hover{
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+.copy-btn:active{
+  outline: none;
+}
+.Mui-disabled{
+  color: #fff !important;
+  background-color: #555 !important;
 }

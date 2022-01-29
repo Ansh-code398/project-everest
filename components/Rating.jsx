@@ -8,6 +8,7 @@ export default function Ratings(props) {
     const [ratings, setRatings] = useState(null);
     const [loading, setLoading] = useState(true);
     const [myRating, setMyRating] = useState(0);
+    const [submitting, setSubmitting] = useState(false);
     useEffect(() => {
         axios.get(`https://linuix-app-api.vercel.app/api/ratings/${props.id}`).then((res) => {
             setRatings(res.data);
@@ -24,10 +25,22 @@ export default function Ratings(props) {
                 value={ratings}
                 readOnly={true}
                 precision={0.1}
-                color="primary"
+                color="white"
+                variant="outlined"
+                sx={{
+                    fontSize: '1.5rem',
+                    margin: '0.5rem',
+                    backgroundColor: '#fff',
+                    borderRadius: '0.5rem',
+                    padding: '0.5rem',
+                    fontWeight: 'bold',
+                    border: '1px solid #0a1946',
+                    color: '#333'
+                }
+                }
             /> : <CircularProgress />}
             <br/>
-            {!loading && <p className="text-3xl mt-6 mb-0">Your Rating</p>} <br/>
+            {!loading && <p className="text-3xl mt-6 mb-0 text-white">Your Rating</p>} <br/>
             {!loading && <Rating 
                 name="rate"
                 value={localStorage.getItem(`${props.id}`) === null ? myRating : localStorage.getItem(`${props.id}`)}
@@ -35,16 +48,25 @@ export default function Ratings(props) {
                 precision={0.1}
                 onChange={(event, newValue) => {
                     setMyRating(newValue);
-                }
-            }
+                }}
+                sx={{
+                    fontSize: '1.5rem',
+                    margin: '0.5rem',
+                    backgroundColor: '#fff',
+                    borderRadius: '0.5rem',
+                    padding: '0.5rem',
+                    fontWeight: 'bold',
+                    border: '1px solid #0a1946',
+                    color: '#000'
+                }}
             />}
             <br/>
             {!loading && <Button
-                variant="outlined"
-                color="inherit"
-                disabled={myRating === 0 || localStorage.getItem(`${props.id}`) !== null}
+                variant="contained"
+                color="primary"
+                disabled={myRating === 0 || localStorage.getItem(`${props.id}`) !== null || submitting}
                 onClick={() => {
-                    console.log(myRating);
+                    setSubmitting(true);
                     axios.post(`https://linuix-app-api.vercel.app/api/ratings/`, {
                         post_id: props.id,
                         ratings: [
@@ -58,11 +80,20 @@ export default function Ratings(props) {
                     }).then((res) => {
                         localStorage.setItem(`${props.id}`, myRating);
                         router.push(router.asPath)
+                        setSubmitting(false);
                     }).catch((err) => {
                         console.log(err);
+                        setSubmitting(false);
                     })
                 }}
-            > {localStorage.getItem(`${props.id}`) === null ? "Submit" : "Already Rated"} </Button>}
+                sx={{
+                    fontSize: '1.5rem',
+                    margin: '0.5rem',
+                    color: '#fff',
+                    background: "linear-gradient(to right,#ed6ea0,#ec8c69,#f7186a, #fbb03b)"
+                }}
+                
+            > {!submitting ? localStorage.getItem(`${props.id}`) === null ? "Submit" : "Already Rated" : 'Submitting'} </Button>}
         </div>
     );
 }

@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
 
   return <Layout user={user} setUser={setUser}>
+    <div className='p-12 bg-[#131313]'/>
     <Component {...pageProps} user={user} setUser={setUser} />
   </Layout>
 }
