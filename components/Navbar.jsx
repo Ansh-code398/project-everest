@@ -194,7 +194,7 @@ export default function Navbar({ user, setUser }) {
             </SearchIconWrapper>
           </Search>}
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {router.asPath.includes("/admin") && <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {user ? <IconButton
               size="large"
               edge="end"
@@ -206,7 +206,7 @@ export default function Navbar({ user, setUser }) {
             >
               {router.asPath.includes("/admin") && <Avatar onClick={signOut} src={user.photo_url} />}
             </IconButton> : <Link href='/admin/signin'><Button variant="primary"> Sign In </Button></Link>}
-          </Box>
+          </Box>}
           {router.asPath.includes("/admin") && <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
