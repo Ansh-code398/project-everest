@@ -13,7 +13,10 @@ import Ratings from './Rating';
 const SoftwareDetail = ({ software, user }) => {
   const [openModal, setOpenModal] = useState(false)
   const [edit, setEdit] = useState(false);
-  const dlurl = software.downloadLink.replace("&", "-")
+  const [dlurl, setDlurl] = useState('');
+  useEffect(() => {
+    software.downloadLink && setDlurl(software.downloadLink.replace("&", "-"))
+  }, [software])
   return (
     <>
       {software && <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 mx-2">
