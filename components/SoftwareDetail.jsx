@@ -16,6 +16,7 @@ const SoftwareDetail = ({ software, user }) => {
   const [copytoClipboard, setCopytoClipboard] = useState(false);
   useEffect(() => {
     software.downloadLink && setDlurl(software.downloadLink.replace("&", "-"))
+    software.downloadLink && setDlurl(software.downloadLink.replace("--", "-"))
   }, [software])
   return (
     <>
