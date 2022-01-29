@@ -3,9 +3,7 @@ import Navbar from "./Navbar.jsx"
 
 import { useRouter } from 'next/router'
 import { useProgressStore } from '../useProgressStore'
-import { Progress } from '../Components/Bar'
 import { useEffect } from 'react'
-import Link from "next/link"
 import Head from "next/head"
 
 const Layout = (props) => {
