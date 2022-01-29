@@ -181,6 +181,21 @@ export default function Navbar({ user, setUser, isAnimating }) {
             style={{
               backgroundColor: '#fff'
             }}
+            sx={{
+              color: '#0a1946',
+              borderRadius: '0',
+              border: 'none',
+              width: '100%',
+              minWidth: '30%',
+              borderRadius: '5px',
+              '& .MuiInputBase-input': {
+                padding: '1rem',
+                color: '#0a1946',
+              },
+              '& .MuiInputBase-input:placeholder': {
+                color: '#0a1946',
+              }
+            }}
             renderInput={(params) => (
               <StyledInputBase
                 {...params}

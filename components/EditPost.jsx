@@ -84,12 +84,12 @@ export default function EditPost(props) {
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <EditIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" className='text-white'>
                         Edit This Post
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} >
                                 <TextField
                                     autoComplete="given-name"
                                     name="title"
@@ -99,6 +99,11 @@ export default function EditPost(props) {
                                     label="Title"
                                     autoFocus
                                     inputRef={title}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -109,6 +114,11 @@ export default function EditPost(props) {
                                     label="Small Description"
                                     name="exerpt"
                                     inputRef={exerpt}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -123,6 +133,11 @@ export default function EditPost(props) {
                                     maxRows={5}
                                     id="description"
                                     inputRef={description}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -135,6 +150,11 @@ export default function EditPost(props) {
                                     id="feature-image"
                                     autoComplete="profile"
                                     inputRef={featuredImage}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -148,6 +168,11 @@ export default function EditPost(props) {
                                     id="code"
                                     autoComplete="code"
                                     inputRef={code}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -161,6 +186,11 @@ export default function EditPost(props) {
                                     id="category"
                                     autoComplete="slug"
                                     inputRef={categories}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -174,6 +204,11 @@ export default function EditPost(props) {
                                     id="downloadLink"
                                     autoComplete="downloadLink"
                                     inputRef={downloadLink}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -187,6 +222,11 @@ export default function EditPost(props) {
                                     id="software_website"
                                     autoComplete="software_website"
                                     inputRef={software_website}
+                                    sx={{
+                                        color: 'black',
+                                        background: '#fff',
+                                        borderRadius: '5px',
+                                    }}
                                 />
                             </Grid>
                         </Grid>

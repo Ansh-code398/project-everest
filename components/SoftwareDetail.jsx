@@ -20,7 +20,7 @@ const SoftwareDetail = ({ software, user }) => {
   return (
     <>
       {software && <div className="bg-[#131313] shadow-lg rounded-lg lg:p-8 pb-12">
-        <div className="relative overflow-hidden shadow-md mb-6 flex justify-center">
+        <div className="relative overflow-hidden shadow-md mb-6 flex justify-center contrast-200">
           {software.featuredImage.url && <img src={software.featuredImage.url} alt="" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg max-w-md mx-auto" />}
         </div>
 

@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const SoftwareCard = ({ software }) => (
     <div className='card' title={software.title}>
-        <div className="imgBx">
+        <div className="imgBx contrast-200">
             <img src={software.featuredImage.url} />
         </div>
         <div className="contentBx">
